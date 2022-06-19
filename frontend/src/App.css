@@ -1,27 +1,59 @@
 .App {
-  text-align: center;
   background-color: #112B3C;
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
   width: 100%;
 }
 
-.login {
+.container {
+  background-color: #EFEFEF; 
+  padding: 30px 50px; 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: white;
+  border-radius: 4px;
 }
 
-.App-link {
-  color: #61dafb;
+.title {
+  display: flex;
+  align-items: center;
+  color: #112B3C
+}
+
+.inputDiv {
+  color: #112B3C;
+  width: 100%;
+  margin: 20px;
+  
+  input {
+    width: 100%;
+    border: 1px solid #205375;
+    border-radius: 2px;
+    background-color: #EFEFEF;
+    color: #112B3C;
+  }
 }
 
 .icon {
-  color: #EFEFEF;
-  width: 100px;
-  height: 100px;
+  color: #205375;
+  width: 30px;
+  height: 30px;
+  padding-right: 10px;
+
 }
 
-/* #EFEFEF #F66B0E #205375*/
+h5 {
+  margin: 7px 0px;
+}
+
+p {
+  margin-top: 20px;
+  color: #112B3C;
+  font-size: 12px;
+}
+
+/*  #112B3C #EFEFEF #F66B0E #205375*/
