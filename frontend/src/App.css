@@ -1,0 +1,27 @@
+.App {
+  text-align: center;
+  background-color: #112B3C;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.icon {
+  color: #EFEFEF;
+  width: 100px;
+  height: 100px;
+}
+
+/* #EFEFEF #F66B0E #205375*/
