@@ -1,5 +1,4 @@
 import Mission from "../repository/models/Mission.js";
-import makeDb from "../config/dbConnect.js";
 
 class MissionRepository {
     static getMissions = async () => {
