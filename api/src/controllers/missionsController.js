@@ -1,4 +1,5 @@
 import missionRepository from "../repository/missionRepository.js";
+import dbHandler from "../repository/index.js";
 
 class MissionController {
     static getMissions = async (_) => {
@@ -6,7 +7,7 @@ class MissionController {
             'Content-Type': 'application/json'
         }
         try {
-            const missions = await missionRepository.handler(missionRepository.getMissions);
+            const missions = await dbHandler(missionRepository.getMissions);
             return {
                 headers,
                 statusCode: 200,
@@ -29,7 +30,7 @@ class MissionController {
             'Content-Type': 'application/json'
         }
         try {
-            const success = await missionRepository.handler(missionRepository.addMission, httpRequest.body);
+            const success = await dbHandler(missionRepository.addMission, httpRequest.body);
             return {
                 headers,
                 statusCode: 201,
@@ -52,7 +53,7 @@ class MissionController {
             'Content-Type': 'application/json'
         }
         try {
-            const success = await missionRepository.handler(
+            const success = await dbHandler(
                 missionRepository.deleteMission,
                 httpRequest.body,
                 httpRequest.params,

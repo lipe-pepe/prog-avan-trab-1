@@ -2,12 +2,6 @@ import Mission from "../repository/models/Mission.js";
 import makeDb from "../config/dbConnect.js";
 
 class MissionRepository {
-    static handler = async (operation, body, params, query) => {
-        await makeDb();
-        let result = await operation(body, params, query);
-        return result;
-    }
-
     static getMissions = async () => {
         let missions = await Mission.find();
         return missions;
