@@ -8,5 +8,6 @@ const router = express.Router();
 router
     .get("/missions", makeExpressCallback(MissionController.getMissions))
     .post("/missions", makeExpressCallback(MissionController.addMission))
+    .delete("/missions/:id", makeExpressCallback(MissionController.deleteMission))
 
 export default router;

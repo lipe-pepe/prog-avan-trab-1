@@ -46,6 +46,34 @@ class MissionController {
             }
         }
     }
+
+    static deleteMission = async (httpRequest) => {
+        const headers = {
+            'Content-Type': 'application/json'
+        }
+        try {
+            const success = await missionRepository.handler(
+                missionRepository.deleteMission,
+                httpRequest.body,
+                httpRequest.params,
+                httpRequest.query
+            );
+            return {
+                headers,
+                statusCode: 200,
+                body: { success }
+            }
+        } catch (e) {
+            console.log(e)
+            return {
+                headers,
+                statusCode: 400,
+                body: {
+                    error: e.message
+                }
+            }
+        }
+    }
 }
 
 export default MissionController;

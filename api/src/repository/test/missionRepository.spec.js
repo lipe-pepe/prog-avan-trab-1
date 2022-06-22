@@ -41,4 +41,31 @@ describe('Missions ', () => {
             formUrl: expect.any(String)
         })]));
     });
+
+    it('DELETE /missions/:id?userId --> bad format of ObjectId', async () => {
+        expect(missionRepository.deleteMission({}, { id: "aa" }, { userId: "bb" })).rejects
+            .toThrow();
+    });
+
+    it('DELETE /missions/:id?userId --> mission doesn\'t exist', async () => {
+        expect(missionRepository.deleteMission({}, { id: "62b2c826129150caef2cab3e" }, { userId: "62b2c826129150caef2cab3e" })).rejects
+            .toThrow(`Mission doesn't exist`);
+    });
+
+    it('DELETE /missions/:id?userId --> user not authorized', async () => {
+        expect(missionRepository.deleteMission(null,
+            { id: mongoose.Types.ObjectId.createFromTime(1).toString() },
+            { userId: mongoose.Types.ObjectId.createFromTime(1).toString() }
+        )).rejects
+            .toThrow(`Not authorized to delete this mission`);
+    });
+
+    it('DELETE /missions/:id?userId --> mission deleted', async () => {
+        const response = await missionRepository.deleteMission(
+            null,
+            { id: mongoose.Types.ObjectId.createFromTime(1).toString() },
+            { userId: mongoose.Types.ObjectId.createFromTime(2).toString() });
+        expect(response).toEqual(true);
+    });
+    
 });
