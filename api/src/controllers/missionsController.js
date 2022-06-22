@@ -1,5 +1,6 @@
 import missionRepository from "../repository/missionRepository.js";
 import dbHandler from "../repository/index.js";
+import notFound from "./not-found.js";
 
 class MissionController {
     static getMissions = async (_) => {
@@ -12,6 +13,34 @@ class MissionController {
                 headers,
                 statusCode: 200,
                 body: { missions }
+            }
+        } catch (e) {
+            console.log(e)
+            return {
+                headers,
+                statusCode: 400,
+                body: {
+                    error: e.message
+                }
+            }
+        }
+    }
+    static getMissionById = async (httpRequest) => {
+        const headers = {
+            'Content-Type': 'application/json'
+        }
+        try {
+            const mission = await dbHandler(missionRepository.getMissionById,
+                httpRequest.body,
+                httpRequest.params
+            );
+            if (!mission) {
+                return notFound();
+            }
+            return {
+                headers,
+                statusCode: 200,
+                body: mission
             }
         } catch (e) {
             console.log(e)

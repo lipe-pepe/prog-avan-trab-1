@@ -6,6 +6,11 @@ class MissionRepository {
         return missions;
     }
 
+    static getMissionById = async (_, params) => {
+        let mission = await Mission.findById(params.id);
+        return mission;
+    }
+
     static addMission = async (body) => {
         let mission = Mission(body);
         if ((await Mission.find({ formUrl: mission.formUrl })).length > 0) {
