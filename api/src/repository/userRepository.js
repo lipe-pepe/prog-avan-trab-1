@@ -6,6 +6,11 @@ class UserRepository {
         return users;
     }
 
+    static getUserById = async (_, params) => {
+        let user = await User.findById(params.id);
+        return user;
+    }
+
     static addUser = async (body) => {
         let user = User(body);
         if ((await User.find({ email: user.email })).length > 0) {

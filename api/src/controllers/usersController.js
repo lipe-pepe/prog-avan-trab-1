@@ -24,6 +24,34 @@ class UserController {
             }
         }
     }
+    static getUserById = async (httpRequest) => {
+        const headers = {
+            'Content-Type': 'application/json'
+        }
+        try {
+            const user = await dbHandler(UserRepository.getUserById,
+                httpRequest.body,
+                httpRequest.params
+            );
+            if (!user) {
+                return notFound();
+            }
+            return {
+                headers,
+                statusCode: 200,
+                body: user
+            }
+        } catch (e) {
+            console.log(e)
+            return {
+                headers,
+                statusCode: 400,
+                body: {
+                    error: e.message
+                }
+            }
+        }
+    }
 
     static addUser = async (httpRequest) => {
         const headers = {
