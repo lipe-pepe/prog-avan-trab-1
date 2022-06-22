@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import User from "../repository/models/User.js";
 
 class UserRepository {
@@ -26,6 +27,17 @@ class UserRepository {
             throw Error(`User doesn't exist`);
         }
         await user.delete();
+        return true;
+    }
+
+    static subscribeOnMission = async (body, params) => {
+        let user = User(body);
+        let objectId = mongoose.Types.ObjectId.createFromHexString(params.missionId);
+        if (user.activeMissions.includes(objectId)) {
+            throw Error(`User already participating on this mission`);
+        }
+        user.activeMissions.push(objectId);
+        await user.updateOne({activeMissions: user.activeMissions});
         return true;
     }
 }

@@ -5,9 +5,9 @@ import makeFakeMission from "../../../tests/mocks/Mission.js"
 
 beforeAll(async () => await db.connect());
 
-afterAll(async () => await db.clearDatabase());
+// afterAll(async () => await db.clearDatabase());
 
-afterAll(async () => await db.closeDatabase());
+// afterAll(async () => await db.closeDatabase());
 
 describe('Missions ', () => {
     it('GET /missions --> get empty missions list', async () => {
@@ -90,6 +90,21 @@ describe('Missions ', () => {
             { id: mongoose.Types.ObjectId.createFromTime(1).toString() },
             { userId: mongoose.Types.ObjectId.createFromTime(2).toString() });
         expect(response).toEqual(true);
+    });
+
+    it('POST /users/:id/missions/:missionId --> subscribe user on mission', async () => {
+        const response = await missionRepository.subscribeUserOnMission(
+            makeFakeMission(),
+            { userId: mongoose.Types.ObjectId.createFromTime(7).toString() });
+        expect(response).toEqual(true);
+    });
+
+    it('POST /users/:id/missions/:missionId --> user already on mission', async () => {
+        expect(missionRepository.subscribeUserOnMission(
+            makeFakeMission({ participants: [mongoose.Types.ObjectId.createFromTime(7)] }),
+            { userId: mongoose.Types.ObjectId.createFromTime(7).toString() }
+        )).rejects
+            .toThrow(`User already participating on this mission`);
     });
 
 });

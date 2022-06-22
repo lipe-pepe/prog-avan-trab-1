@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import Mission from "../repository/models/Mission.js";
 
 class MissionRepository {
@@ -29,6 +30,17 @@ class MissionRepository {
             throw Error(`Not authorized to delete this mission`);
         }
         await mission.delete();
+        return true;
+    }
+
+    static subscribeUserOnMission = async (body, params) => {
+        let mission = Mission(body);
+        let objectId = mongoose.Types.ObjectId.createFromHexString(params.userId);
+        if (mission.participants.includes(objectId)) {
+            throw Error(`User already participating on this mission`);
+        }
+        mission.participants.push(objectId);
+        await mission.updateOne({participants: mission.participants});
         return true;
     }
 }

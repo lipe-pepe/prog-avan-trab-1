@@ -85,4 +85,19 @@ describe('Users ', () => {
         expect(response).toEqual(true);
     });
 
+    it('POST /users/:id/missions/:missionId --> subscribe on mission', async () => {
+        const response = await userRepository.subscribeOnMission(
+            makeFakeUser(),
+            { missionId: mongoose.Types.ObjectId.createFromTime(7).toString() });
+        expect(response).toEqual(true);
+    });
+
+    it('POST /users/:id/missions/:missionId --> already on mission', async () => {
+        expect(userRepository.subscribeOnMission(
+            makeFakeUser({ activeMissions: [mongoose.Types.ObjectId.createFromTime(7)] }),
+            { missionId: mongoose.Types.ObjectId.createFromTime(7).toString() }
+        )).rejects
+            .toThrow(`User already participating on this mission`);
+    });
+
 });
