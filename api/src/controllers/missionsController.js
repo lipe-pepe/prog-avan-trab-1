@@ -6,7 +6,7 @@ class MissionController {
             'Content-Type': 'application/json'
         }
         try {
-            const missions = await missionRepository.getMissions();
+            const missions = await missionRepository.handler(missionRepository.getMissions);
             return {
                 headers,
                 statusCode: 200,
@@ -29,7 +29,7 @@ class MissionController {
             'Content-Type': 'application/json'
         }
         try {
-            const success = await missionRepository.addMission(httpRequest.body);
+            const success = await missionRepository.handler(missionRepository.addMission, httpRequest.body);
             return {
                 headers,
                 statusCode: 201,
