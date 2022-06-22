@@ -42,6 +42,32 @@ describe('Users ', () => {
         })]));
     });
 
+    it('GET /users --> get user by id', async () => {
+        const response = await userRepository.getUserById(
+            null,
+            { id: mongoose.Types.ObjectId.createFromTime(5).toString() });
+        expect(response).toEqual(expect.objectContaining({
+            _id: expect.any(mongoose.Types.ObjectId),
+            __v: expect.any(Number),
+            name: expect.any(String),
+            email: expect.any(String),
+            balance: expect.any(Number),
+            totalPoints: expect.any(Number),
+            createdOn: expect.any(Date),
+            activeMissions: expect.any(Array),
+            pendingRewards: expect.any(Array),
+            completedMissions: expect.any(Array),
+            claimedRewards: expect.any(Array)
+        }));
+    });
+
+    it('GET /users --> get user by id not found', async () => {
+        const response = await userRepository.getUserById(
+            null,
+            { id: "62b2c826129150caef2cab3e" });
+        expect(response).toEqual(null);
+    });
+
     it('DELETE /users/:id --> bad format of ObjectId', async () => {
         expect(userRepository.deleteUser({}, { id: "aa" })).rejects
             .toThrow();

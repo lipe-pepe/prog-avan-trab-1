@@ -42,6 +42,30 @@ describe('Missions ', () => {
         })]));
     });
 
+    it('GET /missions/:id --> get mission by id', async () => {
+        const response = await missionRepository.getMissionById(null,
+            { id: mongoose.Types.ObjectId.createFromTime(1).toString() });
+        expect(response).toEqual(expect.objectContaining({
+            _id: expect.any(mongoose.Types.ObjectId),
+            __v: expect.any(Number),
+            name: expect.any(String),
+            description: expect.any(String),
+            points: expect.any(Number),
+            expirationDate: expect.any(Date),
+            createdOn: expect.any(Date),
+            createdBy: expect.any(mongoose.Types.ObjectId),
+            participants: expect.any(Array),
+            completers: expect.any(Array),
+            formUrl: expect.any(String)
+        }));
+    });
+
+    it('GET /missions/:id --> get mission by id not found', async () => {
+        const response = await missionRepository.getMissionById(null,
+            { id: "62b2c826129150caef2cab3e" });
+        expect(response).toEqual(null);
+    });
+
     it('DELETE /missions/:id?userId --> bad format of ObjectId', async () => {
         expect(missionRepository.deleteMission({}, { id: "aa" }, { userId: "bb" })).rejects
             .toThrow();
@@ -67,5 +91,5 @@ describe('Missions ', () => {
             { userId: mongoose.Types.ObjectId.createFromTime(2).toString() });
         expect(response).toEqual(true);
     });
-    
+
 });
