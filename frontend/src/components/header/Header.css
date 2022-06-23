@@ -1,0 +1,40 @@
+.header {
+  position: fixed;
+  /* background-color: #205375; */
+  width: 100vw;
+  height: 7vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  z-index: 1000;
+
+}
+  .app-title {
+    left: 0px;
+    margin: 30px 20px;
+    height: inherit;
+    display: flex;
+    
+  }
+
+    .title-icon {
+      color: #F66B0E;
+      width: 30px;
+      height: 30px;
+      padding-right: 10px;
+    }
+
+    h1 {
+      color: #EFEFEF;
+    }
+
+  .options {
+    display: flex;
+  }
+
+    .header-link {
+      color: #EFEFEF;
+      margin-right: 20px;
+    }
+
