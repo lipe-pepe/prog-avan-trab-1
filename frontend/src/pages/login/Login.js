@@ -29,7 +29,7 @@ function Login() {
           </div>
 
           <a href="/missions">     
-            <Button title="Entrar"></Button>
+            <Button title="Entrar" fullWidth={true}></Button>
           </a>
 
           <div>

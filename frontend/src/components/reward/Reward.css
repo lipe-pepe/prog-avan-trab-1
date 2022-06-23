@@ -1,0 +1,20 @@
+.reward-image {
+    max-width: 150px;
+    max-height: 150px;
+    padding-right: 20px;
+    
+}
+
+.reward {
+    padding: 40px;
+    display: flex;
+    align-items:flex-start;
+    position: relative;
+}
+
+.cost-area {
+    right: 0;
+    position: absolute;
+}
+
+  

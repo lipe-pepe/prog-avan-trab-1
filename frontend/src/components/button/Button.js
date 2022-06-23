@@ -1,11 +1,23 @@
 import React from 'react';
-import './Button.css'
+import './Button.css';
 
-const Button = ({title, color}) => {
+const Button = ({
+  title, 
+  color,
+  fullWidth
+}) => {
 
   return (
-    <button className='button'>{title}</button>  
-  )
+    <div>
+      {fullWidth === true &&   
+        <button className='full-button'>{title}</button>  
+      }
+      {fullWidth === false &&   
+        <button className='button'>{title}</button>  
+      }
+    </div>
+    
+  );
 }
 
-export default Button
+export default Button;

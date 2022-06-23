@@ -1,14 +1,27 @@
 .mission-card {
+    position: relative;
     background-color: #EFEFEF;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin: 30px;
     border-radius: 5px;
     width: 20vw;
-    height: 20vh;
     align-items: center;
+    padding: 10px 15px;
 
 }
 
-    .mission-items {
-        margin: 5px 20px;
+    .mission-items, .mission-points, .mission-button {
+        margin: 10px 20px;
+    }
+
+    .mission-points {
+        color: #205375;
+        padding: 10px 0px;
+    }
+
+    .mission-button {
+        position:absolute;
+        padding-top: 20px;
+        bottom:0;
+        right:0;
     }

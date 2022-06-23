@@ -5,14 +5,19 @@ import Button from "../button/Button"
 
 const MissionCard = ({
     title,
-    description
+    description,
+    creator,
+    points
 }) => {
 
     return (
         <div className='mission-card'>
             <h2 className='mission-items'>{title}</h2>
-            <p className='mission-items'>{description}</p>         
-            <Button className='mission-items' title="Entrar"/>
+            <p className='mission-items'>Criada por {creator}</p>
+            <div className='divider'></div>
+            <p className='mission-items'>{description}</p> 
+            <h5 className='mission-points'>PONTOS: {points}</h5>
+            <div className='mission-button'><Button  title="Visitar" fullWidth={false}/></div>                  
         </div>
     )
 }

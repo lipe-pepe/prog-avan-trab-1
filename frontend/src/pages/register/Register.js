@@ -29,7 +29,7 @@ function Register() {
           </div>
 
           <a href="/">        
-            <Button title="Cadastrar"></Button>
+            <Button title="Cadastrar" fullWidth={true}></Button>
           </a>
           
           <div className='centered'>    
