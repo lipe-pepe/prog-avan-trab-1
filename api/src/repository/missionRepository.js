@@ -39,8 +39,26 @@ class MissionRepository {
         if (mission.participants.includes(objectId)) {
             throw Error(`User already participating on this mission`);
         }
+        if (mission.completers.includes(objectId)) {
+            throw Error(`User already completed this mission`);
+        }
         mission.participants.push(objectId);
-        await mission.updateOne({participants: mission.participants});
+        await mission.updateOne({ participants: mission.participants });
+        return true;
+    }
+
+    static completeMission = async (body, params) => {
+        let mission = Mission(body);
+        let objectId = mongoose.Types.ObjectId.createFromHexString(params.userId);
+        if (mission.completers.includes(objectId)) {
+            throw Error(`User already completed this mission`);
+        }
+        if (!mission.participants.includes(objectId)) {
+            throw Error(`User is not participating on this mission`);
+        }
+        mission.participants.splice(mission.participants.findIndex(id => id == objectId), 1);
+        mission.completers.push(objectId);
+        await mission.updateOne({ participants: mission.participants, completers: mission.completers });
         return true;
     }
 }

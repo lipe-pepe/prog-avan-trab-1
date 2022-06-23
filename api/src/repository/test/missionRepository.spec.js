@@ -107,4 +107,35 @@ describe('Missions ', () => {
             .toThrow(`User already participating on this mission`);
     });
 
+    it('POST /users/:id/missions/:missionId --> user already completed mission', async () => {
+        expect(missionRepository.subscribeUserOnMission(
+            makeFakeMission({ completers: [mongoose.Types.ObjectId.createFromTime(7)] }),
+            { userId: mongoose.Types.ObjectId.createFromTime(7).toString() }
+        )).rejects
+            .toThrow(`User already completed this mission`);
+    });
+
+    it('PUT /users/:id/missions/:missionId --> complete user mission', async () => {
+        const response = await missionRepository.completeMission(
+            makeFakeMission({ participants: [mongoose.Types.ObjectId.createFromTime(7)] }),
+            { userId: mongoose.Types.ObjectId.createFromTime(7).toString() });
+        expect(response).toEqual(true);
+    });
+
+    it('PUT /users/:id/missions/:missionId --> user not participating on mission', async () => {
+        expect(missionRepository.completeMission(
+            makeFakeMission(),
+            { userId: mongoose.Types.ObjectId.createFromTime(7).toString() }
+        )).rejects
+            .toThrow(`User is not participating on this mission`);
+    });
+
+    it('PUT /users/:id/missions/:missionId --> user already completed mission', async () => {
+        expect(missionRepository.completeMission(
+            makeFakeMission({ completers: [mongoose.Types.ObjectId.createFromTime(7)] }),
+            { userId: mongoose.Types.ObjectId.createFromTime(7).toString() }
+        )).rejects
+            .toThrow(`User already completed this mission`);
+    });
+
 });

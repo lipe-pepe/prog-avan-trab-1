@@ -139,7 +139,57 @@ class UserController {
             return {
                 headers,
                 statusCode: 200,
-                body: {status : missionResult && userResult}
+                body: { status: missionResult && userResult }
+            }
+        } catch (e) {
+            console.log(e)
+            return {
+                headers,
+                statusCode: 400,
+                body: {
+                    error: e.message
+                }
+            }
+        }
+    }
+
+    static completeMission = async (httpRequest) => {
+        const headers = {
+            'Content-Type': 'application/json'
+        }
+        try {
+            const user = await dbHandler(UserRepository.getUserById,
+                httpRequest.body,
+                { id: httpRequest.params.id }
+            );
+            if (!user) {
+                return notFound();
+            }
+            const mission = await dbHandler(MissionRepository.getMissionById,
+                httpRequest.body,
+                { id: httpRequest.params.missionId }
+            );
+            if (!mission) {
+                return notFound();
+            }
+
+            const missionResult = await dbHandler(MissionRepository.completeMission,
+                mission,
+                { userId: httpRequest.params.id }
+            );
+
+            const userResult = await dbHandler(UserRepository.completeMission,
+                user,
+                {
+                    missionId: httpRequest.params.missionId,
+                    missionPoints: mission.points
+                }
+            );
+
+            return {
+                headers,
+                statusCode: 200,
+                body: { status: missionResult && userResult }
             }
         } catch (e) {
             console.log(e)
