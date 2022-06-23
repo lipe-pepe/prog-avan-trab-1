@@ -1,0 +1,14 @@
+.mission-card {
+    background-color: #EFEFEF;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 30px;
+    border-radius: 5px;
+    width: 20vw;
+    height: 20vh;
+    align-items: center;
+
+}
+
+    .mission-items {
+        margin: 5px 20px;
+    }
