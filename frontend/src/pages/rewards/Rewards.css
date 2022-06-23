@@ -4,7 +4,7 @@
     width: 100%;
 }
 
-.page-title {
+.page-title, .points-text {
     color: #112B3C;   
     font-size: 50px;
 }
@@ -29,17 +29,16 @@
     justify-content: space-between;
 }
 
-    .new-mission-button {
-        margin-top: 2vh;
-        display: flex;
-        position: absolute;
-        top: 0;
-        right: 0;
-        color: #205375;
-        align-items: center;
-        text-decoration: none;
-        border-radius: 10px;
-    }
+.current-points {
+    margin-top: 2vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #205375;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 10px;
+}
 
     .new-mission-button:hover {
         background-color: rgba(0, 0, 0, 0.1);

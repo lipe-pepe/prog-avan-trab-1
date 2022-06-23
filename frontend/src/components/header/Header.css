@@ -1,16 +1,18 @@
 .header {
   position: fixed;
-  /* background-color: #205375; */
+  top: 0;
+  background-color: #112B3C;
   width: 100vw;
-  height: 7vh;
+  height: 6vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   z-index: 1000;
 
 }
   .app-title {
+    align-items: center;
     left: 0px;
     margin: 30px 20px;
     height: inherit;
@@ -31,10 +33,16 @@
 
   .options {
     display: flex;
+    right: 0px;
   }
 
     .header-link {
       color: #EFEFEF;
-      margin-right: 20px;
+      margin-right: 60px;
+      text-decoration: none;
+    }
+
+    .header-link:hover {
+      color: #F66B0E;
     }
 
