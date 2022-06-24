@@ -38,6 +38,11 @@ const Rewards = () => {
             cost={4500}
           />
           <Reward 
+            title="Minicurso de Python" 
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat magna quis magna varius, efficitur lobortis purus molestie. Curabitur efficitur."
+            cost={5000}
+          />
+          <Reward 
             title="Curso exclusivo de JavaScript" 
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat magna quis magna varius, efficitur lobortis purus molestie. Curabitur efficitur."
             cost={3000}
@@ -47,11 +52,7 @@ const Rewards = () => {
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat magna quis magna varius, efficitur lobortis purus molestie. Curabitur efficitur."
             cost={4000}
           />
-          <Reward 
-            title="Curso de Python com alunos de Engenharia da Computação" 
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat magna quis magna varius, efficitur lobortis purus molestie. Curabitur efficitur."
-            cost={5000}
-          />
+          
         </div>
         
       </div>
