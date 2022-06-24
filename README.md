@@ -32,7 +32,7 @@
   
 ## Pesquisa e o mundo acadêmico:
 
-  Constantemente, formulários de pesquisa ou entrevistas são necessários para validação de ideias e projetos, dessa forma, quanto mais pessoas responderem a uma pesquisa, pode se dizer que mais válida ela é. Porém, se muitas pessoas que responderam a pesquisa compartilham do mesmo ponto de vista, os resultados irão representar melhor este grupo do que qualquer outro, ficando assim enviezada. Por isso, para ter resultados melhores, é preciso conduzir pesquisas em muito grupos diferentes, sendo assim, é necessário que pesquisadores alcancem também as pessoas fora do ambiente acadêmico.
+  Constantemente, formulários de pesquisa ou entrevistas são necessários para validação de ideias e projetos, dessa forma, quanto mais pessoas responderem a uma pesquisa, pode se dizer que mais válida ela é. Porém, se muitas pessoas que responderam a pesquisa compartilham do mesmo ponto de vista, os resultados irão representar melhor este grupo do que qualquer outro, ficando assim enviesada. Por isso, para ter resultados melhores, é preciso conduzir pesquisas em muito grupos diferentes, sendo assim, é necessário que pesquisadores alcancem também as pessoas fora do ambiente acadêmico.
 
 ## Gamificação e o mundo dos jogos:
 
