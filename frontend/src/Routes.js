@@ -6,6 +6,7 @@ import Register from './pages/register/Register'
 import Missions from './pages/missions/Missions'
 import Profile from './pages/profile/Profile'
 import Rewards from './pages/rewards/Rewards'
+import Mission from './pages/mission/Mission'
 
 export default function ApplicationRoutes() {
     return (
@@ -17,6 +18,7 @@ export default function ApplicationRoutes() {
               <Route exact path="/missions" element={<Missions/>}/>
               <Route exact path="/profile" element={<Profile/>}/>
               <Route exact path="/rewards" element={<Rewards/>}/>
+              <Route path="/mission" element={<Mission/>}/>
             </Routes> 
         </BrowserRouter>
     )

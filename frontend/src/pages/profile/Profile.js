@@ -1,5 +1,6 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
+import './Profile.css'
 
 import { MdOutlinePersonOutline } from "react-icons/md";
 import Button from "../../components/button/Button"
@@ -9,17 +10,21 @@ function Profile() {
   const [email, setEmail] = useState('')
   const [points, setPoints] = useState(0)
   const [totalPoints, setTotalPoints] = useState(0)
+  const [completedMissions, setCompletedMissions] = useState([])
+  const [claimedRewards, setClaimedRewards] = useState([])
 
   useEffect(() => {
     setName('João da Silva')
     setEmail('joao@gmail.com')
     setPoints(4000)
     setTotalPoints(12500)
+    setCompletedMissions(['Formulário de Satisfação','Pesquisa do GTA'])
+    setClaimedRewards(['IFood - Voucher de R$40,00'])
   },[])
   return (
     <div>
       <div className="App">
-      <div className='login-container'>
+      <div className='profile-container'>
         <form action="">
 
           <div className='title'>
@@ -28,16 +33,33 @@ function Profile() {
           </div>
 
           <div className='inputDiv'>
-            <h5>Nome</h5>
-            <input type="text" placeholder={name}></input>
-            <h5>Email</h5>
-            <input type="text" placeholder={email}></input>
-            <h5>Senha</h5>
-            <input type="password"></input>
-            <p>Pontos atuais:</p>
-            <h5>{points}</h5>
-            <p>Pontos totais:</p>
-            <h5>{totalPoints}</h5>
+            <div className='flexbox'>
+              <div className='column'>
+                <h5>Nome</h5>
+                <input type="text" placeholder={name}></input>
+                <h5>Email</h5>
+                <input type="text" placeholder={email}></input>
+                <h5>Senha</h5>
+                <input type="password"></input>
+                <p>Pontos atuais:</p>
+                <h5>{points}</h5>
+                <p>Pontos totais:</p>
+                <h5>{totalPoints}</h5>
+              </div>
+              <div className='column'>
+                <h5>Missões Finalizadas:</h5>
+                { completedMissions.map( (mission) => 
+                  <li>{ mission }</li>) 
+                }
+                <br/>
+                <h5>Recompensas ganhadas:</h5>
+                { claimedRewards.map( (reward) => 
+                  <li>{ reward }</li>) 
+                }
+              </div>
+              
+            </div>
+            
           </div>
 
           <a href="/profile">     
