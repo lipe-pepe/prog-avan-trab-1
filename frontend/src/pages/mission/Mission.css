@@ -1,0 +1,25 @@
+.mission-container {
+    position: relative;
+    background-color: #EFEFEF;
+    padding: 30px 50px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #112B3C;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    max-width: 70vw;
+}
+
+.mission-title {
+    color: #112B3C;
+}
+
+.mission-button {
+    position:absolute;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    bottom:0;
+    right:0;
+}

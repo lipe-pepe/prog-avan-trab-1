@@ -6,18 +6,6 @@
     width: 100%;
   }
   
-  .login-container {
-    background-color: #EFEFEF; 
-    padding: 30px 50px; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    border-radius: 4px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-  
   .title {
     display: flex;
     align-items: center;
