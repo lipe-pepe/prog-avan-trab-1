@@ -32,7 +32,7 @@ function Mission() {
           </h5>
           <h3>PONTOS: {points}</h3>
           <div className='mission-button'>
-            <a href="/profile">     
+            <a href="/missions">     
               <Button title="Entrar na missão" fullWidth={false}></Button>
             </a>
           </div>

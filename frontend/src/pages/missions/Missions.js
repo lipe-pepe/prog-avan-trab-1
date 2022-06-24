@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Missions.css';
 
 import {MdAddBox} from "react-icons/md";
 import MissionCard from "../../components/missionCard/MissionCard";
 
 const Missions = () => {
+
+  const [missions, setMissions] = useState({})
+  
+  const getMissions = () => {
+    fetch('http://localhost:3000/missions')
+    .then(res => res.json())
+    .then(res => {
+      setMissions(res)
+    })
+  }
+
+  useEffect(() => {
+    getMissions()
+  },[])
 
   return (
     <div className="background">
@@ -15,7 +29,7 @@ const Missions = () => {
             <h3>Crie e participe de missões para ganhar pontos universitários!</h3>
           </div>
           <div>
-            <a className="new-mission-button" href='/new_mission'>
+            <a className="new-mission-button" href='/missions'>
               <MdAddBox className='add-icon'/>
               <h3>Criar nova missão</h3>
             </a>
@@ -26,64 +40,9 @@ const Missions = () => {
         <div className='divider'></div>
         
         <div className='missions-grid'>
-          <MissionCard 
-            title="Exemplo" 
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac dui in erat varius porttitor. Integer bibendum dignissim iaculis."
-            creator="João"
-            points={1500}
-          />
-          <MissionCard 
-            title="Redes de Computadores - GTA" 
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac dui in erat varius porttitor. Integer bibendum dignissim iaculis."
-            creator="Luiz Henrique"
-            points={1500}
-          />
-          <MissionCard 
-            title="Pesquisa de Mercado para projeto de App de Transporte" 
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac dui in erat varius porttitor. Integer bibendum dignissim iaculis."
-            creator="João"
-            points={1500}
-          />
-
-          <MissionCard 
-            title="Pesquisa de Mercado para projeto de App de Transporte" 
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac dui in erat varius porttitor. Integer bibendum dignissim iaculis."
-            creator="João"
-            points={1500}
-          />
-
-          <MissionCard 
-            title="Exemplo" 
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac dui in erat varius porttitor. Integer bibendum dignissim iaculis."
-            creator="João"
-            points={1500}
-          />
-          <MissionCard 
-            title="Redes de Computadores - GTA" 
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac dui in erat varius porttitor. Integer bibendum dignissim iaculis."
-            creator="Luiz Henrique"
-            points={1500}
-          />
-          <MissionCard 
-            title="Pesquisa de Mercado para projeto de App de Transporte" 
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac dui in erat varius porttitor. Integer bibendum dignissim iaculis."
-            creator="João"
-            points={1500}
-          />
-
-          <MissionCard 
-            title="Pesquisa de Mercado para projeto de App de Transporte" 
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac dui in erat varius porttitor. Integer bibendum dignissim iaculis."
-            creator="João"
-            points={1500}
-          />
-
-          <MissionCard 
-            title="Pesquisa de Mercado para projeto de App de Transporte" 
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac dui in erat varius porttitor. Integer bibendum dignissim iaculis."
-            creator="João"
-            points={1500}
-          />
+          {missions.map.map( (mission) => 
+              <MissionCard title={mission.name} description={mission.description} points={mission.points} creator={mission.createdBy} />) 
+          }
         </div>
         
       </div>
