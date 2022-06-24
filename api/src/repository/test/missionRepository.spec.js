@@ -5,9 +5,9 @@ import makeFakeMission from "../../../tests/mocks/Mission.js"
 
 beforeAll(async () => await db.connect());
 
-// afterAll(async () => await db.clearDatabase());
+afterAll(async () => await db.clearDatabase());
 
-// afterAll(async () => await db.closeDatabase());
+afterAll(async () => await db.closeDatabase());
 
 describe('Missions ', () => {
     it('GET /missions --> get empty missions list', async () => {

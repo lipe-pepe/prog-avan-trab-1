@@ -1,5 +1,6 @@
 import UserRepository from "../repository/userRepository.js";
 import MissionRepository from "../repository/missionRepository.js";
+import RewardRepository from "../repository/rewardRepository.js";
 import dbHandler from "../repository/index.js";
 import notFound from "./not-found.js";
 
@@ -190,6 +191,103 @@ class UserController {
                 headers,
                 statusCode: 200,
                 body: { status: missionResult && userResult }
+            }
+        } catch (e) {
+            console.log(e)
+            return {
+                headers,
+                statusCode: 400,
+                body: {
+                    error: e.message
+                }
+            }
+        }
+    }
+
+    static requestReward = async (httpRequest) => {
+        const headers = {
+            'Content-Type': 'application/json'
+        }
+        try {
+            const user = await dbHandler(UserRepository.getUserById,
+                httpRequest.body,
+                { id: httpRequest.params.id }
+            );
+            if (!user) {
+                return notFound();
+            }
+            const reward = await dbHandler(RewardRepository.getRewardById,
+                httpRequest.body,
+                { id: httpRequest.params.rewardId }
+            );
+            if (!reward) {
+                return notFound();
+            }
+
+            const rewardResult = await dbHandler(RewardRepository.userClaimReward,
+                reward,
+                { userId: httpRequest.params.id }
+            );
+
+            const userResult = await dbHandler(UserRepository.requestReward,
+                user,
+                {
+                    rewardId: httpRequest.params.rewardId,
+                    rewardPrice: reward.price
+                }
+            );
+
+            return {
+                headers,
+                statusCode: 200,
+                body: { status: rewardResult && userResult }
+            }
+        } catch (e) {
+            console.log(e)
+            return {
+                headers,
+                statusCode: 400,
+                body: {
+                    error: e.message
+                }
+            }
+        }
+    }
+
+    static completeReward = async (httpRequest) => {
+        const headers = {
+            'Content-Type': 'application/json'
+        }
+        try {
+            const user = await dbHandler(UserRepository.getUserById,
+                httpRequest.body,
+                { id: httpRequest.params.id }
+            );
+            if (!user) {
+                return notFound();
+            }
+            const reward = await dbHandler(RewardRepository.getRewardById,
+                httpRequest.body,
+                { id: httpRequest.params.rewardId }
+            );
+            if (!reward) {
+                return notFound();
+            }
+
+            const rewardResult = await dbHandler(RewardRepository.handOutReward,
+                reward,
+                { userId: httpRequest.params.id }
+            );
+
+            const userResult = await dbHandler(UserRepository.completeReward,
+                user,
+                { rewardId: httpRequest.params.rewardId }
+            );
+
+            return {
+                headers,
+                statusCode: 200,
+                body: { status: rewardResult && userResult }
             }
         } catch (e) {
             console.log(e)

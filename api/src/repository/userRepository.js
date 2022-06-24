@@ -63,6 +63,44 @@ class UserRepository {
         });
         return true;
     }
+
+    static requestReward = async (body, params) => {
+        let user = User(body);
+        let objectId = mongoose.Types.ObjectId.createFromHexString(params.rewardId);
+        if (user.pendingRewards.includes(objectId)) {
+            throw Error(`User already requested this reward`);
+        }
+        if (user.claimedRewards.includes(objectId)) {
+            throw Error(`User already received this reward`);
+        }
+        if (user.balance < params.rewardPrice) {
+            throw Error(`Insuficient balance`);
+        }
+        user.pendingRewards.push(objectId);
+        await user.updateOne({
+            pendingRewards: user.pendingRewards,
+            balance: user.balance - params.rewardPrice
+        });
+        return true;
+    }
+
+    static completeReward = async (body, params) => {
+        let user = User(body);
+        let objectId = mongoose.Types.ObjectId.createFromHexString(params.rewardId);
+        if (!user.pendingRewards.includes(objectId)) {
+            throw Error(`User did not request this reward`);
+        }
+        if (user.claimedRewards.includes(objectId)) {
+            throw Error(`User already claimed this reward`);
+        }
+        user.pendingRewards.splice(user.pendingRewards.findIndex(id => id == objectId), 1);
+        user.claimedRewards.push(objectId);
+        await user.updateOne({
+            pendingRewards: user.pendingRewards,
+            claimedRewards: user.claimedRewards
+        });
+        return true;
+    }
 }
 
 export default UserRepository;

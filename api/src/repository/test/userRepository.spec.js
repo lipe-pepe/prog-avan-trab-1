@@ -143,4 +143,76 @@ describe('Users ', () => {
             .toThrow(`User already completed this mission`);
     });
 
+    it('POST /users/:id/rewards/:rewardId --> request reward', async () => {
+        const response = await userRepository.requestReward(
+            makeFakeUser(),
+            {
+                rewardId: mongoose.Types.ObjectId.createFromTime(7).toString(),
+                rewardPrice: 100
+            });
+        expect(response).toEqual(true);
+    });
+
+    it('POST /users/:id/rewards/:rewardId --> already requested reward', async () => {
+        expect(userRepository.requestReward(
+            makeFakeUser({ pendingRewards: [mongoose.Types.ObjectId.createFromTime(7)] }),
+            { rewardId: mongoose.Types.ObjectId.createFromTime(7).toString() }
+        )).rejects
+            .toThrow(`User already requested this reward`);
+    });
+
+    it('POST /users/:id/rewards/:rewardId --> already received reward', async () => {
+        expect(userRepository.requestReward(
+            makeFakeUser({ claimedRewards: [mongoose.Types.ObjectId.createFromTime(7)] }),
+            { rewardId: mongoose.Types.ObjectId.createFromTime(7).toString() }
+        )).rejects
+            .toThrow(`User already received this reward`);
+    });
+
+    it('POST /users/:id/rewards/:rewardId --> already completed reward', async () => {
+        expect(userRepository.requestReward(
+            makeFakeUser({ balance: 100 }),
+            {
+                rewardId: mongoose.Types.ObjectId.createFromTime(7).toString(),
+                rewardPrice: 1000
+            }
+        )).rejects
+            .toThrow(`Insuficient balance`);
+    });
+
+    it('PUT /users/:id/rewards/:rewardId --> complete reward', async () => {
+        const response = await userRepository.completeReward(
+            makeFakeUser({ pendingRewards: [mongoose.Types.ObjectId.createFromTime(7)] }),
+            {
+                rewardId: mongoose.Types.ObjectId.createFromTime(7).toString(),
+                rewardPoints: 1500
+            });
+        expect(response).toEqual(true);
+    });
+
+    it('PUT /users/:id/rewards/:rewardId --> not participating on reward', async () => {
+        expect(userRepository.completeReward(
+            makeFakeUser(),
+            {
+                rewardId: mongoose.Types.ObjectId.createFromTime(7).toString(),
+                rewardPoints: 1500
+            }
+        )).rejects
+            .toThrow(`User did not request this reward`);
+    });
+
+    it('PUT /users/:id/rewards/:rewardId --> already completed reward', async () => {
+        expect(userRepository.completeReward(
+            makeFakeUser({
+                pendingRewards: [mongoose.Types.ObjectId.createFromTime(7)],
+                claimedRewards: [mongoose.Types.ObjectId.createFromTime(7)]
+            }),
+            {
+                rewardId: mongoose.Types.ObjectId.createFromTime(7).toString(),
+                rewardPoints: 1500
+            }
+        )).rejects
+            .toThrow(`User already claimed this reward`);
+    });
+
 });
