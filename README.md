@@ -36,15 +36,18 @@
 
 ## Gamificação e o mundo dos jogos:
 
-  Tudo fica mais divertido se atribuírmos valor lúdico; essa é a ideia por trás da gamificação. Jogos em sua natureza, consistem tarefas repetitivas, o que os tornam divertidos em comparação a tarefas corriqueiras, é que escolhemos realizá-los sem uma obrigação intrínseca e damos um contexto para valorizar aquela ação. Dessa forma, sistemas como: missão/recompensa, 
+  Tudo fica mais divertido se atribuírmos valor lúdico; essa é a ideia por trás da gamificação. Jogos em sua natureza, consistem de tarefas repetitivas, o que os tornam divertidos em comparação a tarefas corriqueiras, é que escolhemos realizá-los sem uma obrigação intrínseca e damos um contexto para valorizar aquela ação. Dessa forma, sistemas como: missão/recompensa, conquistas e ranks, estimulam a participação contínua do usuário.
 
 ## Engajamento e o mundo virtual:
+  
+  O surgimento das redes sociais trouxe novas oportunidades de divulgação além das mídias já tidas como convencionais. O compartilhamento de informação se dá a uma velocidade sem precedentes, o que pode ser aproveitado por estratégias de engajamento, como dar pontos de contribuição a um usuário que trouxer outro para a plataforma. Além disso, a randomização do feed, pode promover opções que naturalmente não seriam ativamente procuradas, mas podem ser de interesse do usuário, assim, o apresentando a algo que ele "não sabia que precisava".  
 
 ## Alguns detalhes técnicos:
   
   UniPresente está sendo desenvolvido com MERN stack, respeitando os princípios de CLEAN architecture.
   
+  O front-end é desenvolvido em REACT devido a modularização fornecida pelos componentes.
   
+  O back-end é desenvolvido em JavaScript com Node.js para execução dos scripts fora de navegadores e MongoDB é utilizado para gerenciamento do banco de dados.
   
-
-
+  O aplicativo é integrado com Express e portado pelo Docker.
