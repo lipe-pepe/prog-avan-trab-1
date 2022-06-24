@@ -16,7 +16,7 @@ const MissionCard = ({
             <p className='mission-items'>Criada por {creator}</p>
             <div className='divider'></div>
             <p className='mission-items'>{description}</p> 
-            <h5 className='mission-points'>PONTOS: {points}</h5>
+            <h5 className='mission-points'>PONTOS: {points} </h5>
             <div className='mission-button'>
                 <a href='/mission'>
                     <Button  title="Visitar" fullWidth={false}/>
