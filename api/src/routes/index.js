@@ -2,17 +2,19 @@ import express from "express";
 import makeExpressCallback from "../helpers/expressCallback.js";
 import notFound from "../controllers/not-found.js";
 import missionsRoutes from "./missionsRoutes.js"
+import rewardsRoutes from "./rewardsRoutes.js"
 import usersRoutes from "./usersRoutes.js"
 
 const routes = (app) => {
     app.route('/').get((req, res) => {
-        res.send({status: "server up and running"})
+        res.send({ status: "server up and running" })
     })
 
     app.use(
         express.json(),
         missionsRoutes,
-        usersRoutes
+        usersRoutes,
+        rewardsRoutes
     )
     app.use(makeExpressCallback(notFound))
 }

@@ -5,7 +5,8 @@ export default function makeFakeUser(overrides) {
     const user = {
         _id: mongoose.Types.ObjectId.createFromTime(5),
         name: faker.name.findName(),
-        email: faker.internet.email()
+        email: faker.internet.email(),
+        balance: 1000
     }
     return { ...user, ...overrides }
 }

@@ -11,6 +11,8 @@ router
     .post("/users", makeExpressCallback(UserController.addUser))
     .post("/users/:id/missions/:missionId", makeExpressCallback(UserController.activateMission))
     .put("/users/:id/missions/:missionId", makeExpressCallback(UserController.completeMission))
+    .post("/users/:id/rewards/:rewardId", makeExpressCallback(UserController.requestReward))
+    .put("/users/:id/rewards/:rewardId", makeExpressCallback(UserController.completeReward))
     .delete("/users/:id", makeExpressCallback(UserController.deleteUser))
 
 export default router;
