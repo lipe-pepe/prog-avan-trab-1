@@ -20,7 +20,7 @@ export default async function makeDb() {
                 socketTimeoutMS: 45000
             };
             console.log('Connecting to MongoDB');
-            await mongoose.connect('mongodb://localhost:27017/unipresente', options);
+            await mongoose.connect('mongodb://host.docker.internal:27017/unipresente', options);
             console.log('Connected to MongoDB');
         } catch (error) {
             throw Error(`Error connecting to MongoDB: ${error.message}`);
