@@ -8,4 +8,6 @@ app.use(cors());
 
 routes(app);
 
+//TODO: implement authentication and authorization
+
 export default app;
