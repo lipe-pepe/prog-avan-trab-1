@@ -2,7 +2,7 @@ version: "2"
 services:
     frontend:
         build: ./frontend
-        image: webapp-frontend
+        image: divasques/patrab-frontend
         restart: always
         ports:
             - "3001:3001"
@@ -15,7 +15,7 @@ services:
             - webappnetwork
     api:
         build: ./api
-        image: webapp-api
+        image: divasques/patrab-api
         restart: always
         ports:
             - "3000:3000"

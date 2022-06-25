@@ -1,23 +1,21 @@
 import rewardRepository from "../repository/rewardRepository.js";
 import dbHandler from "../repository/index.js";
 import notFound from "./not-found.js";
+import defaultHeader from "../helpers/defaultHeader.js";
 
 class RewardController {
     static getRewards = async (_) => {
-        const headers = {
-            'Content-Type': 'application/json'
-        }
         try {
             const rewards = await dbHandler(rewardRepository.getRewards);
             return {
-                headers,
+                defaultHeader,
                 statusCode: 200,
                 body: { rewards }
             }
         } catch (e) {
             console.log(e)
             return {
-                headers,
+                defaultHeader,
                 statusCode: 400,
                 body: {
                     error: e.message
@@ -26,9 +24,6 @@ class RewardController {
         }
     }
     static getRewardById = async (httpRequest) => {
-        const headers = {
-            'Content-Type': 'application/json'
-        }
         try {
             const reward = await dbHandler(rewardRepository.getRewardById,
                 httpRequest.body,
@@ -38,14 +33,14 @@ class RewardController {
                 return notFound();
             }
             return {
-                headers,
+                defaultHeader,
                 statusCode: 200,
                 body: reward
             }
         } catch (e) {
             console.log(e)
             return {
-                headers,
+                defaultHeader,
                 statusCode: 400,
                 body: {
                     error: e.message
@@ -55,20 +50,17 @@ class RewardController {
     }
 
     static addReward = async (httpRequest) => {
-        const headers = {
-            'Content-Type': 'application/json'
-        }
         try {
             const success = await dbHandler(rewardRepository.addReward, httpRequest.body);
             return {
-                headers,
+                defaultHeader,
                 statusCode: 201,
                 body: { success }
             }
         } catch (e) {
             console.log(e)
             return {
-                headers,
+                defaultHeader,
                 statusCode: 400,
                 body: {
                     error: e.message
@@ -78,9 +70,6 @@ class RewardController {
     }
 
     static deleteReward = async (httpRequest) => {
-        const headers = {
-            'Content-Type': 'application/json'
-        }
         try {
             const success = await dbHandler(
                 rewardRepository.deleteReward,
@@ -88,14 +77,14 @@ class RewardController {
                 httpRequest.params
             );
             return {
-                headers,
+                defaultHeader,
                 statusCode: 200,
                 body: { success }
             }
         } catch (e) {
             console.log(e)
             return {
-                headers,
+                defaultHeader,
                 statusCode: 400,
                 body: {
                     error: e.message

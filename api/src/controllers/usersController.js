@@ -3,23 +3,21 @@ import MissionRepository from "../repository/missionRepository.js";
 import RewardRepository from "../repository/rewardRepository.js";
 import dbHandler from "../repository/index.js";
 import notFound from "./not-found.js";
+import defaultHeader from "../helpers/defaultHeader.js";
 
 class UserController {
     static getUsers = async (_) => {
-        const headers = {
-            'Content-Type': 'application/json'
-        }
         try {
             const users = await dbHandler(UserRepository.getUsers);
             return {
-                headers,
+                defaultHeader,
                 statusCode: 200,
                 body: { users }
             }
         } catch (e) {
             console.log(e)
             return {
-                headers,
+                defaultHeader,
                 statusCode: 400,
                 body: {
                     error: e.message
@@ -29,9 +27,6 @@ class UserController {
     }
 
     static getUserById = async (httpRequest) => {
-        const headers = {
-            'Content-Type': 'application/json'
-        }
         try {
             const user = await dbHandler(UserRepository.getUserById,
                 httpRequest.body,
@@ -41,14 +36,14 @@ class UserController {
                 return notFound();
             }
             return {
-                headers,
+                defaultHeader,
                 statusCode: 200,
                 body: user
             }
         } catch (e) {
             console.log(e)
             return {
-                headers,
+                defaultHeader,
                 statusCode: 400,
                 body: {
                     error: e.message
@@ -58,20 +53,17 @@ class UserController {
     }
 
     static addUser = async (httpRequest) => {
-        const headers = {
-            'Content-Type': 'application/json'
-        }
         try {
             const success = await dbHandler(UserRepository.addUser, httpRequest.body);
             return {
-                headers,
+                defaultHeader,
                 statusCode: 201,
                 body: { success }
             }
         } catch (e) {
             console.log(e)
             return {
-                headers,
+                defaultHeader,
                 statusCode: 400,
                 body: {
                     error: e.message
@@ -81,9 +73,6 @@ class UserController {
     }
 
     static deleteUser = async (httpRequest) => {
-        const headers = {
-            'Content-Type': 'application/json'
-        }
         try {
             const success = await dbHandler(
                 UserRepository.deleteUser,
@@ -91,14 +80,14 @@ class UserController {
                 httpRequest.params
             );
             return {
-                headers,
+                defaultHeader,
                 statusCode: 200,
                 body: { success }
             }
         } catch (e) {
             console.log(e)
             return {
-                headers,
+                defaultHeader,
                 statusCode: 400,
                 body: {
                     error: e.message
@@ -108,9 +97,6 @@ class UserController {
     }
 
     static activateMission = async (httpRequest) => {
-        const headers = {
-            'Content-Type': 'application/json'
-        }
         try {
             const user = await dbHandler(UserRepository.getUserById,
                 httpRequest.body,
@@ -138,14 +124,14 @@ class UserController {
             );
 
             return {
-                headers,
+                defaultHeader,
                 statusCode: 200,
                 body: { status: missionResult && userResult }
             }
         } catch (e) {
             console.log(e)
             return {
-                headers,
+                defaultHeader,
                 statusCode: 400,
                 body: {
                     error: e.message
@@ -155,9 +141,6 @@ class UserController {
     }
 
     static completeMission = async (httpRequest) => {
-        const headers = {
-            'Content-Type': 'application/json'
-        }
         try {
             const user = await dbHandler(UserRepository.getUserById,
                 httpRequest.body,
@@ -188,14 +171,14 @@ class UserController {
             );
 
             return {
-                headers,
+                defaultHeader,
                 statusCode: 200,
                 body: { status: missionResult && userResult }
             }
         } catch (e) {
             console.log(e)
             return {
-                headers,
+                defaultHeader,
                 statusCode: 400,
                 body: {
                     error: e.message
@@ -205,9 +188,6 @@ class UserController {
     }
 
     static requestReward = async (httpRequest) => {
-        const headers = {
-            'Content-Type': 'application/json'
-        }
         try {
             const user = await dbHandler(UserRepository.getUserById,
                 httpRequest.body,
@@ -238,14 +218,14 @@ class UserController {
             );
 
             return {
-                headers,
+                defaultHeader,
                 statusCode: 200,
                 body: { status: rewardResult && userResult }
             }
         } catch (e) {
             console.log(e)
             return {
-                headers,
+                defaultHeader,
                 statusCode: 400,
                 body: {
                     error: e.message
@@ -255,9 +235,6 @@ class UserController {
     }
 
     static completeReward = async (httpRequest) => {
-        const headers = {
-            'Content-Type': 'application/json'
-        }
         try {
             const user = await dbHandler(UserRepository.getUserById,
                 httpRequest.body,
@@ -285,14 +262,14 @@ class UserController {
             );
 
             return {
-                headers,
+                defaultHeader,
                 statusCode: 200,
                 body: { status: rewardResult && userResult }
             }
         } catch (e) {
             console.log(e)
             return {
-                headers,
+                defaultHeader,
                 statusCode: 400,
                 body: {
                     error: e.message

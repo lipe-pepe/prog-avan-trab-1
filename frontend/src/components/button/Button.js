@@ -14,7 +14,7 @@ const Button = ({
         <a className='full-button' href={ref}>{title}</a>  
       }
       {fullWidth === false &&   
-        <button className='button' href={ref}>{title}</button>  
+        <a className='button' href={ref}>{title}</a>  
       }
     </div>
     

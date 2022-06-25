@@ -1,23 +1,21 @@
 import missionRepository from "../repository/missionRepository.js";
 import dbHandler from "../repository/index.js";
 import notFound from "./not-found.js";
+import defaultHeader from "../helpers/defaultHeader.js";
 
 class MissionController {
     static getMissions = async (_) => {
-        const headers = {
-            'Content-Type': 'application/json'
-        }
         try {
             const missions = await dbHandler(missionRepository.getMissions);
             return {
-                headers,
+                defaultHeader,
                 statusCode: 200,
                 body: { missions }
             }
         } catch (e) {
             console.log(e)
             return {
-                headers,
+                defaultHeader,
                 statusCode: 400,
                 body: {
                     error: e.message
@@ -26,9 +24,6 @@ class MissionController {
         }
     }
     static getMissionById = async (httpRequest) => {
-        const headers = {
-            'Content-Type': 'application/json'
-        }
         try {
             const mission = await dbHandler(missionRepository.getMissionById,
                 httpRequest.body,
@@ -38,14 +33,14 @@ class MissionController {
                 return notFound();
             }
             return {
-                headers,
+                defaultHeader,
                 statusCode: 200,
                 body: mission
             }
         } catch (e) {
             console.log(e)
             return {
-                headers,
+                defaultHeader,
                 statusCode: 400,
                 body: {
                     error: e.message
@@ -55,20 +50,17 @@ class MissionController {
     }
 
     static addMission = async (httpRequest) => {
-        const headers = {
-            'Content-Type': 'application/json'
-        }
         try {
             const success = await dbHandler(missionRepository.addMission, httpRequest.body);
             return {
-                headers,
+                defaultHeader,
                 statusCode: 201,
                 body: { success }
             }
         } catch (e) {
             console.log(e)
             return {
-                headers,
+                defaultHeader,
                 statusCode: 400,
                 body: {
                     error: e.message
@@ -78,9 +70,6 @@ class MissionController {
     }
 
     static deleteMission = async (httpRequest) => {
-        const headers = {
-            'Content-Type': 'application/json'
-        }
         try {
             const success = await dbHandler(
                 missionRepository.deleteMission,
@@ -89,14 +78,14 @@ class MissionController {
                 httpRequest.query
             );
             return {
-                headers,
+                defaultHeader,
                 statusCode: 200,
                 body: { success }
             }
         } catch (e) {
             console.log(e)
             return {
-                headers,
+                defaultHeader,
                 statusCode: 400,
                 body: {
                     error: e.message
