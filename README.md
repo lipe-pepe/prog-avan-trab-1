@@ -21,13 +21,13 @@
   No momento, as missões e recompensas recomendadas são respectivamente: formulários de pesquisa acadêmica e vagas em mini-cursos de tópicos gerais.
   
   Algumas possibilidades para missões no futuro:
-  * Convite para pesquisa presencial
-  * Jogos educativos
+  * Convite para pesquisa presencial;
+  * Jogos educativos;
   * Outros...
   
   Algumas possibilidade de recompensas:
-  * Vagas em projetos de extensão
-  * Vagas em visitas de campo
+  * Vagas em projetos de extensão;
+  * Vagas em visitas de campo;
   * Outros...
   
 ## Pesquisa e o mundo acadêmico:
