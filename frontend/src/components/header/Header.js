@@ -7,6 +7,9 @@ import {SiBookstack} from "react-icons/si";
 import Button from "../button/Button"
 
 const Header = () => {
+    //  Queremos ter dois tipos de header - 
+    //  - Tela de Login e de Cadastro (sem os botões das páginas)
+    //  - Demais telas (com os botões para navegação das páginas)
     const {pathname} = useLocation()
 
     return (

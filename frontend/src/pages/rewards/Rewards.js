@@ -4,10 +4,28 @@ import './Rewards.css';
 
 import Reward from "../../components/reward/Reward";
 
+// --- Tela de Recompensas ---
+
+// Na tela de recompensas, devemos ter todas as recompensas disponíveis no banco de dados.
+
 const Rewards = () => {
   const [currentPoints, setCurrentPoints] = useState(0);
+  const [rewards, setRewards] = useState([])
+  
+  const getRewards = () => {
+    fetch('http://localhost:3000/rewards')
+    .then(res => res.json())
+    .then(res => {
+      setRewards(res.rewards)
+    })
+  }
 
-  // MUDAR ISSO DEPOIS
+  useEffect(() => {
+    getRewards()
+  },[])
+
+  // Esse useEffect está setando os pontos atuais do usuário. Isso deve ser mudado para pegar esse dado do banco de dados de acordo com
+  // usuário autenticado, quando a autenticação estiver funcionando.
   useEffect(() => {
     setCurrentPoints(4000)
   }, []);
@@ -32,27 +50,11 @@ const Rewards = () => {
         <div className='divider'></div>
         
         <div className='rewards-grid'>
-          <Reward 
-            title="Voucher de 50 reais no IFood" 
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat magna quis magna varius, efficitur lobortis purus molestie. Curabitur efficitur."
-            cost={4500}
-          />
-          <Reward 
-            title="Minicurso de Python" 
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat magna quis magna varius, efficitur lobortis purus molestie. Curabitur efficitur."
-            cost={5000}
-          />
-          <Reward 
-            title="Curso exclusivo de JavaScript" 
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat magna quis magna varius, efficitur lobortis purus molestie. Curabitur efficitur."
-            cost={3000}
-          />
-          <Reward 
-            title="Vale 10 reais no quiosque 'Bom Gosto'" 
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consequat magna quis magna varius, efficitur lobortis purus molestie. Curabitur efficitur."
-            cost={4000}
-          />
-          
+          {/* O map abaixo deve pegar cada uma das recompensas que é guardada no state missions e criar um componente Reward com seus dados.*/}
+          {rewards.map( (reward, index) => 
+              <Reward key={index} title={reward.name} description={reward.description} cost={reward.points}/>
+            )
+          }          
         </div>
         
       </div>

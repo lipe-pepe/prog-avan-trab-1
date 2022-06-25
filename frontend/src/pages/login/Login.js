@@ -4,8 +4,15 @@ import './Login.css';
 import { MdLogin } from "react-icons/md";
 import Button from "../../components/button/Button"
 
+// --- Tela de Login ---
+
+// A autenticação ainda NÃO foi implementada no projeto. Dito isso, a tela de login por enquanto é somente
+// uma simulação de como será o design e usabilidade do login posteriormente. No momento ela somente redireciona
+// o usuário para a tela principal ao enviar o formulário.
+
 function Login() {
 
+  // A função comentada abaixo serve como teste do formulário de login, enquanto a autenticação não é implementada.
   function handleSubmit(e) {
     e.preventDefault();
     console.log('Você clicou em entrar.');

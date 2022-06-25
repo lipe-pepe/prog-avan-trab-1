@@ -3,17 +3,18 @@ import './Button.css';
 
 const Button = ({
   title, 
-  color,
-  fullWidth
+  // A prop full width será uma booleana indicando se o botão deve ter o design full ou limitado ao seu texto.
+  fullWidth,
+  ref
 }) => {
 
   return (
     <div>
       {fullWidth === true &&   
-        <button className='full-button'>{title}</button>  
+        <a className='full-button' href={ref}>{title}</a>  
       }
       {fullWidth === false &&   
-        <button className='button'>{title}</button>  
+        <button className='button' href={ref}>{title}</button>  
       }
     </div>
     

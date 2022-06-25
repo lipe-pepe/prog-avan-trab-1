@@ -5,6 +5,11 @@ import './Profile.css'
 import { MdOutlinePersonOutline } from "react-icons/md";
 import Button from "../../components/button/Button"
 
+// --- Tela de Perfil do Usuário ---
+
+// Na tela do perfil, vemos e alteramos os dados do usuário. No entanto, o grupo teve um problema com o CORS 
+// e não conseguiu realizar a integração. Os dados estão hardcoded, para efeito de visualização do resultado final.
+
 function Profile() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -13,6 +18,7 @@ function Profile() {
   const [completedMissions, setCompletedMissions] = useState([])
   const [claimedRewards, setClaimedRewards] = useState([])
 
+  // Os dados estão hardcoded enquanto o fetch não é implementado.
   useEffect(() => {
     setName('João da Silva')
     setEmail('joao@gmail.com')
@@ -61,7 +67,7 @@ function Profile() {
             </div>
             
           </div>
-
+          {/* A funcionalidade de salvar as alterações do usuário ainda deve ser implementada */}
           <a href="/profile">     
             <Button title="Salvar" fullWidth={true}></Button>
           </a>

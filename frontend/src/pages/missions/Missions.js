@@ -1,25 +1,30 @@
-import React from 'react';
-// import { useState, useEffect}  from 'react'
+import React, { useState, useEffect } from 'react';
 import './Missions.css';
 
-import {MdAddBox} from "react-icons/md";
+import { MdAddBox } from "react-icons/md";
 import MissionCard from "../../components/missionCard/MissionCard";
+
+// --- Tela de Missões ---
+
+// Na tela de missões, devemos ter todas as missões disponíveis no banco de dados.
 
 const Missions = () => {
 
-  // const [missions, setMissions] = useState({})
-  
-  // // const getMissions = () => {
-  // //   fetch('http://localhost:3000/missions')
-  // //   .then(res => res.json())
-  // //   .then(res => {
-  // //     setMissions(res)
-  // //   })
-  // // }
+  const [missions, setMissions] = useState([])
 
-  // // useEffect(() => {
-  // //   getMissions()
-  // // },[])
+  // Pegamos os dados do banco de dados fazendo um fetch pra api:
+  const getMissions = () => {
+    // O endereço ainda está hardcoded. Isso deve ser mudado.
+    fetch('http://localhost:3000/missions')
+      .then(res => res.json())
+      .then(res => {
+        setMissions(res.missions)
+      })
+  }
+
+  useEffect(() => {
+    getMissions()
+  }, [])
 
   return (
     <div className="background">
@@ -31,68 +36,24 @@ const Missions = () => {
           </div>
           <div>
             <a className="new-mission-button" href='/missions'>
-              <MdAddBox className='add-icon'/>
+              <MdAddBox className='add-icon' />
               <h3>Criar nova missão</h3>
             </a>
           </div>
-          
+
         </div>
 
         <div className='divider'></div>
-        
+
         <div className='missions-grid'>
-          {/* {missions.map.map( (mission) => 
-              <MissionCard title={mission.name} description={mission.description} points={mission.points} creator={mission.createdBy} />) 
-          } */}
-          <MissionCard 
-            title={"Pesquisa do LIpE"} 
-            description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget dolor massa. Ut at mi fringilla, eleifend turpis ac, hendrerit."} 
-            points={3000} creator={"João da Silva"} 
-          />
-          <MissionCard 
-            title={"Redes de Computadores - GTA"} 
-            description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget dolor massa. Ut at mi fringilla, eleifend turpis ac, hendrerit."} 
-            points={1500} creator={"Luiz Henrique"} 
-          />
-          <MissionCard 
-            title={"Pesquisa do PADS"} 
-            description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget dolor massa. Ut at mi fringilla, eleifend turpis ac, hendrerit."} 
-            points={1500} creator={"João da Silva"} 
-          />
-          <MissionCard 
-            title={"Pesquisa do LIpE"} 
-            description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget dolor massa. Ut at mi fringilla, eleifend turpis ac, hendrerit."} 
-            points={3000} creator={"João da Silva"} 
-          />
-          <MissionCard 
-            title={"Redes de Computadores - GTA"} 
-            description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget dolor massa. Ut at mi fringilla, eleifend turpis ac, hendrerit."} 
-            points={1500} creator={"Luiz Henrique"} 
-          />
-          <MissionCard 
-            title={"Pesquisa do PADS"} 
-            description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget dolor massa. Ut at mi fringilla, eleifend turpis ac, hendrerit."} 
-            points={1500} creator={"João da Silva"} 
-          />
-          <MissionCard 
-            title={"Pesquisa do LIpE"} 
-            description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget dolor massa. Ut at mi fringilla, eleifend turpis ac, hendrerit."} 
-            points={3000} creator={"João da Silva"} 
-          />
-          <MissionCard 
-            title={"Redes de Computadores - GTA"} 
-            description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget dolor massa. Ut at mi fringilla, eleifend turpis ac, hendrerit."} 
-            points={1500} creator={"Luiz Henrique"} 
-          />
-          <MissionCard 
-            title={"Pesquisa do PADS"} 
-            description={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget dolor massa. Ut at mi fringilla, eleifend turpis ac, hendrerit."} 
-            points={1500} creator={"João da Silva"} 
-          />
+          {/* O map abaixo mapeia cada missão no state missions para um MissionCard. */}
+          {missions.map((mission, index) =>
+            <MissionCard key={index} title={mission.name} description={mission.description} points={mission.points} creator={mission.createdBy} />)
+          }
         </div>
-        
+
       </div>
-      
+
     </div>
   );
 }

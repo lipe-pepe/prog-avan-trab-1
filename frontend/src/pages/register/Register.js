@@ -3,8 +3,16 @@ import './Register.css';
 
 import Button from "../../components/button/Button"
 
+
+// --- Tela de Cadastro ---
+
+// A autenticação ainda NÃO foi implementada no projeto. Dito isso, a tela de cadastro por enquanto é somente
+// uma simulação de como será o design e usabilidade posteriormente. No momento ela somente redireciona
+// o usuário para a tela de login ao enviar o formulário.
+
 function Register() {
 
+  // A função abaixo serve como teste do formulário de cadastro, enquanto a autenticação não é implementada.
   function handleSubmit(e) {
     e.preventDefault();
     console.log('Você clicou em entrar.');
